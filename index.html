@@ -129,15 +129,13 @@
     <!-- Pause/Play Button -->
 
 <center>
-    <img id="playPause" src="./pause-button.gif" onclick="toggleSlideshow()" style="cursor: pointer; display: none">
-    <img id="playPlay" src="./play-button.gif" onclick="toggleSlideshow()" style="cursor: pointer; display: none">
+    <img id="playPause" src="./pause-button.gif" onclick="toggleSlideshow()" style="cursor: pointer; display: none" title="Pause">
+    <img id="playPlay" src="./play-button.gif" onclick="toggleSlideshow()" style="cursor: pointer; display: none" title="Play">
 </center>
 		
-     </div>
-	
 <script>
 let slideIndex = 0;
-let slideInterval = setInterval(showSlides, 2000); // Auto-play interval
+let slideInterval = setInterval(showSlides, 3000); // Auto-play interval
 let isPlaying = true; // State of autoplay
 
 function showSlides() {
@@ -164,7 +162,8 @@ function toggleSlideshow() {
         isPlaying = false;
         document.getElementById("playPause").innerText = "Play";
     } else {
-        slideInterval = setInterval(showSlides, 3000);
+        showSlides(); // Show the next slide immediately
+		slideInterval = setInterval(showSlides, 3000);
         isPlaying = true;
         document.getElementById("playPause").innerText = "Pause";
     }
