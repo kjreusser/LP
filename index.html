@@ -117,8 +117,8 @@
   </div>
   
     <div class="mySlides fade">
-    <a href="https://calendar.app.google/htqMrtPfwHHSdM5G7" target="_blank">
-	<img src="./make-appointment.gif" style="max-width: 100%; 
+    <a href="https://meet.google.com/yuj-pdmi-vhi" target="_blank">
+	<img src="./SAS.gif" style="max-width: 100%; 
             height: auto; 
             width: auto;
 			top:  5px"></a>
@@ -148,13 +148,19 @@
   </div>
 
 <div class="mySlides fade">
-    <a href="https://meet.google.com/yuj-pdmi-vhi" target="_blank">
-	<img src="./SAS.gif" style="max-width: 100%; 
+    <a href="https://calendar.app.google/htqMrtPfwHHSdM5G7" target="_blank">
+	<img src="./make-appointment.gif" style="max-width: 100%; 
             height: auto; 
             width: auto;
 			top:  5px"></a>
       </div>
 
+<div class="mySlides fade">
+	<img src="./SchoolStatus.gif" style="max-width: 100%; 
+            height: auto; 
+            width: auto;
+			top:  5px"></a>
+      </div>
 
     <!-- Thumbnails -->
 	
@@ -172,16 +178,18 @@
 		
 		<img src="./email-thumbnail.gif" onclick="currentSlide(6)" alt="Slide 6">
 		
-		<img src="./make-appointment-thumbnail.gif" onclick="currentSlide(7)" alt="Slide 7">
-		
+		<img src="./SAS-thumbnail.gif" onclick="currentSlide(7)" alt="Slide 7">
+			
 		<img src="./live-lesson-thumbnail.gif" onclick="currentSlide(8)" alt="Slide 8">
 		
 		<img src="./bullying-thumbnail.gif" onclick="currentSlide(9)" alt="Slide 9">
 		
 		<img src="./2025-thumbnail.gif" onclick="currentSlide(10)" alt="Slide 10">
 		
-		<img src="./SAS-thumbnail.gif" onclick="currentSlide(11)" alt="Slide 11">
-		
+		<img src="./make-appointment-thumbnail.gif" onclick="currentSlide(11)" alt="Slide 11">
+
+		<img src="./SchoolStatus-thumbnail.gif" onclick="currentSlide(12)" alt="Slide 12">
+
 	</div>
 
     <!-- Pause/Play Button -->
@@ -193,7 +201,7 @@
 		
 <script>
 let slideIndex = 0;
-let slideInterval;
+let slideInterval = setInterval(showSlides, 3000); // Auto-play interval
 let isPlaying = true; // State of autoplay
 
 function showSlides() {
@@ -202,29 +210,8 @@ function showSlides() {
         slides[i].style.display = "none";
     }
     slideIndex++;
-
-    // Reset to the first slide if the index exceeds the number of slides
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
-
+    if (slideIndex > slides.length) { slideIndex = 1; }
     slides[slideIndex - 1].style.display = "block";
-
-    // Set a longer delay for the first slide
-    if (slideIndex === 1) {
-        clearInterval(slideInterval);
-        slideInterval = setTimeout(showSlides, 8000); // 8 seconds for the first slide
-    } else {
-        clearInterval(slideInterval);
-        slideInterval = setTimeout(showSlides, 4000); // 4 seconds for other slides
-    }
-}
-
-// Start the slideshow on page load
-document.addEventListener("DOMContentLoaded", () => {
-    showSlides();
-    slideInterval = setTimeout(showSlides, 4000); // Initial delay for auto-play
-});
 
     // Reveal thumbnails after slideshow loads
     document.getElementById("thumbnails").style.display = "block";
@@ -232,6 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Reveal play/pause button after slideshow starts
     document.getElementById("playPause").style.display = "inline";
 	document.getElementById("playPlay").style.display = "inline";
+	
+}
 
 function toggleSlideshow() {
     if (isPlaying) {
@@ -239,22 +228,20 @@ function toggleSlideshow() {
         isPlaying = false;
         document.getElementById("playPause").innerText = "Play";
     } else {
-        showSlides();
-        slideInterval = setTimeout(showSlides, 4000); // Restart autoplay
+        showSlides(); // Show the next slide immediately
+		slideInterval = setInterval(showSlides, 3000);
         isPlaying = true;
         document.getElementById("playPause").innerText = "Pause";
     }
 }
-
 function currentSlide(n) {
-    clearInterval(slideInterval); // Stop autoplay temporarily
     slideIndex = n - 1; // Set the slide index
-    showSlides(); // Show the selected slide
+    showSlides(); // Display the selected slide
     if (isPlaying) {
-        slideInterval = setTimeout(showSlides, 4000); // Restart autoplay
+        clearInterval(slideInterval);
+        slideInterval = setInterval(showSlides, 3000);
     }
 }
-
 
 
 </script>
